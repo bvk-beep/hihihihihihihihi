@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>For My Love 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink: #FFB5C0;
+  --pink-deep: #ff8fa3;
+  --pink-light: #ffe0e6;
+  --white: #ffffff;
+  --soft-white: rgba(255,255,255,0.92);
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--pink);
+  font-family: 'Quicksand', sans-serif;
+  color: var(--white);
+  touch-action: none;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, #ffd6e0 0%, #FFB5C0 50%, #ff8fa3 100%);
+  z-index: -2;
+}
+
+/* ══ PAGES ══ */
+.page {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.6s ease;
+  padding: 20px;
+  text-align: center;
+  z-index: 10;
+}
+.page.active { opacity: 1; pointer-events: all; }
+
+/* ══════════════════════════════════════
+   PAGE 1 — WELCOME
+══════════════════════════════════════ */
+.bouquet-wrap { position: relative; margin-bottom: 18px; }
+
+/* ★ KISS PHOTO — circular frame with tulip ring */
+.kiss-photo-frame {
+  position: relative;
+  width: clamp(160px, 38vw, 230px);
+  height: clamp(160px, 38vw, 230px);
+  margin: 0 auto;
+  opacity: 0;
+  transform: scale(0.3) translateY(60px);
+  transition: opacity 1s cubic-bezier(0.34,1.56,0.64,1),
+              transform 1s cubic-bezier(0.34,1.56,0.64,1);
+}
+.kiss-photo-frame.show { opacity: 1; transform: scale(1) translateY(0); }
+.kiss-photo-frame.floating { animation: floatBouquet 3.5s ease-in-out infinite; }
+
+.kiss-photo {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow: 0 8px 32px rgba(200,60,90,0.35);
+  display: block;
+}
+
+/* Tulip ring orbiting the photo */
+.tulip-ring {
+  position: absolute; inset: -22px;
+  pointer-events: none;
+}
+.tulip-ring span {
+  position: absolute;
+  font-size: clamp(18px, 4vw, 26px);
+  transform-origin: 50% 50%;
+}
+
+@keyframes floatBouquet {
+  0%,100% { transform: translateY(0) rotate(-2deg); }
+  50%     { transform: translateY(-12px) rotate(2deg); }
+}
+
+.welcome-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2rem, 7vw, 3.6rem);
+  color: var(--white);
+  text-shadow: 0 2px 20px rgba(255,100,130,0.6);
+  opacity: 0; transform: translateY(30px);
+  transition: all 0.8s ease 0.8s;
+  line-height: 1.2; margin-bottom: 6px;
+}
+.welcome-title.show { opacity: 1; transform: translateY(0); }
+
+.welcome-sub {
+  font-size: clamp(0.88rem, 2.8vw, 1.1rem);
+  color: var(--soft-white);
+  opacity: 0; transform: translateY(20px);
+  transition: all 0.8s ease 1.4s;
+  margin-bottom: 26px; font-weight: 500;
+  max-width: 340px; line-height: 1.6;
+}
+.welcome-sub.show { opacity: 1; transform: translateY(0); }
+
+.cta-btn {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  background: var(--white); color: var(--pink-deep);
+  border: none; border-radius: 50px;
+  padding: 13px 34px; cursor: pointer;
+  box-shadow: 0 8px 30px rgba(255,100,130,0.35);
+  opacity: 0; transform: translateY(20px) scale(0.9);
+  transition: opacity 0.8s ease 2.4s, transform 0.8s ease 2.4s, background 0.2s;
+  font-weight: 700;
+}
+.cta-btn.show { opacity: 1; transform: translateY(0) scale(1); }
+.cta-btn:hover { background: var(--pink-light); transform: scale(1.05); }
+.cta-btn:active { transform: scale(0.97); }
+
+/* ══════════════════════════════════════
+   PAGE 2 — DO YOU LOVE ME
+══════════════════════════════════════ */
+.love-question {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2rem, 8vw, 4rem);
+  color: var(--white);
+  text-shadow: 0 3px 20px rgba(200,50,80,0.4);
+  margin-bottom: 12px; line-height: 1.2;
+}
+.love-sub-text {
+  font-size: clamp(0.85rem, 2.8vw, 1.1rem);
+  color: var(--soft-white);
+  margin-bottom: 32px; max-width: 360px; line-height: 1.6;
+}
+.yes-btn {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.1rem, 4vw, 1.5rem); font-weight: 700;
+  background: var(--white); color: #e05070;
+  border: none; border-radius: 50px;
+  padding: 14px 40px; cursor: pointer;
+  box-shadow: 0 8px 28px rgba(255,100,130,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative; z-index: 5;
+}
+.yes-btn:hover { transform: scale(1.08); }
+.yes-btn:active { transform: scale(0.95); }
+
+.no-btn {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.1rem, 4vw, 1.5rem); font-weight: 700;
+  background: rgba(255,255,255,0.28); color: var(--white);
+  border: 2px solid rgba(255,255,255,0.5);
+  border-radius: 50px; padding: 14px 40px;
+  cursor: default; position: fixed; z-index: 15;
+  white-space: nowrap; pointer-events: all; user-select: none;
+}
+
+/* ══════════════════════════════════════
+   CONFIRM PAGES 3-6  (photo + question)
+══════════════════════════════════════ */
+/* Photo on confirm pages — rounded square polaroid style */
+.confirm-photo-wrap {
+  position: relative;
+  margin-bottom: 14px;
+}
+.confirm-polaroid {
+  background: white;
+  padding: 8px 8px 28px 8px;
+  border-radius: 4px;
+  box-shadow: 0 8px 28px rgba(180,50,80,0.28);
+  display: inline-block;
+  transform: rotate(var(--tilt, -2deg));
+  animation: polFloat 4s ease-in-out infinite;
+}
+@keyframes polFloat {
+  0%,100% { transform: rotate(var(--tilt,-2deg)) translateY(0); }
+  50%     { transform: rotate(calc(var(--tilt,-2deg) * -0.5)) translateY(-8px); }
+}
+.confirm-polaroid img {
+  width: clamp(110px, 26vw, 160px);
+  height: clamp(110px, 26vw, 160px);
+  object-fit: cover; display: block;
+  border-radius: 2px;
+}
+.confirm-polaroid .pol-caption {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  color: #cc5070; text-align: center;
+  padding-top: 4px; line-height: 1.2;
+}
+
+.confirm-gif {
+  width: clamp(80px, 20vw, 130px);
+  height: clamp(80px, 20vw, 130px);
+  object-fit: contain; border-radius: 16px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 4px 16px rgba(200,50,80,0.3));
+}
+
+.confirm-question {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.6rem, 5.5vw, 3rem);
+  color: var(--white);
+  text-shadow: 0 2px 16px rgba(200,50,80,0.4);
+  margin-bottom: 22px; line-height: 1.2;
+}
+
+.big-yes-btn {
+  font-family: 'Dancing Script', cursive; font-weight: 700;
+  background: var(--white); color: #e05070;
+  border: none; border-radius: 50px; cursor: pointer;
+  box-shadow: 0 8px 30px rgba(255,100,130,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 13px 34px;
+}
+.big-yes-btn:hover { transform: scale(1.06); }
+.big-yes-btn:active { transform: scale(0.95); }
+.confirm-yes-1 { font-size: clamp(1.2rem, 4vw, 1.7rem); }
+.confirm-yes-2 { font-size: clamp(1.5rem, 5vw, 2.1rem); padding: 15px 40px; }
+.confirm-yes-3 { font-size: clamp(1.8rem, 6vw, 2.6rem); padding: 17px 46px; }
+.confirm-yes-4 { font-size: clamp(2.1rem, 7vw, 3.1rem); padding: 19px 54px; }
+
+/* ══════════════════════════════════════
+   PAGE 7 — FINAL POLAROID WALL
+══════════════════════════════════════ */
+#page7 { padding: 10px; overflow: hidden; }
+
+/* The scattered polaroid wall */
+.wall-container {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wall-polaroid {
+  position: absolute;
+  background: white;
+  padding: 6px 6px 22px 6px;
+  border-radius: 3px;
+  box-shadow: 0 6px 24px rgba(160,40,70,0.22);
+  opacity: 0;
+  transform: scale(0.4) rotate(var(--r, 0deg));
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.3,0.64,1);
+  animation-play-state: paused;
+}
+.wall-polaroid.popped {
+  opacity: 1;
+  transform: scale(1) rotate(var(--r, 0deg));
+  animation: wallFloat var(--dur, 5s) ease-in-out infinite;
+  animation-delay: var(--adel, 0s);
+}
+@keyframes wallFloat {
+  0%,100% { transform: scale(1) rotate(var(--r,0deg)) translateY(0); }
+  50%     { transform: scale(1) rotate(calc(var(--r,0deg) + 1deg)) translateY(var(--fy,-6px)); }
+}
+.wall-polaroid img {
+  display: block;
+  object-fit: cover;
+  border-radius: 1px;
+}
+.wall-polaroid .pol-label {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(0.55rem, 1.5vw, 0.75rem);
+  color: #cc5070; text-align: center;
+  padding-top: 3px; line-height: 1.1;
+  white-space: nowrap; overflow: hidden;
+}
+
+/* Centre message card */
+.final-card {
+  position: relative; z-index: 5;
+  background: rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 24px;
+  padding: clamp(16px, 3vw, 24px) clamp(18px, 4vw, 30px);
+  backdrop-filter: blur(10px);
+  max-width: min(420px, 88vw);
+  box-shadow: 0 8px 40px rgba(200,60,90,0.18);
+  text-align: center;
+}
+
+.final-heart-img {
+  width: clamp(52px, 13vw, 78px);
+  height: clamp(52px, 13vw, 78px);
+  object-fit: contain; border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 16px rgba(200,60,90,0.3);
+  animation: heartbeat 1s ease-in-out infinite;
+  display: block; margin: 0 auto 10px;
+}
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  15%     { transform: scale(1.14); }
+  30%     { transform: scale(1); }
+  45%     { transform: scale(1.07); }
+  60%     { transform: scale(1); }
+}
+
+.final-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  color: var(--white);
+  text-shadow: 0 2px 14px rgba(200,50,80,0.4);
+  margin-bottom: 10px; line-height: 1.2;
+}
+.final-message {
+  font-size: clamp(0.78rem, 2.2vw, 0.95rem);
+  color: var(--soft-white); line-height: 1.7;
+  font-weight: 500;
+}
+
+/* ══════════════════════════════════════
+   SHOWER ITEMS
+══════════════════════════════════════ */
+.shower-item {
+  position: fixed; top: -80px;
+  pointer-events: none; z-index: 3;
+  animation: fall linear forwards;
+  will-change: transform;
+}
+.shower-item img { display: block; }
+@keyframes fall {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(112vh) rotate(var(--rot)) scale(0.7); opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   SPARKLES
+══════════════════════════════════════ */
+.sparkle-dot {
+  position: fixed; pointer-events: none;
+  width: 7px; height: 7px; border-radius: 50%;
+  animation: sparkleUp 1.2s ease-out forwards; z-index: 4;
+}
+@keyframes sparkleUp {
+  0%   { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   OVERLAY + DECORATIVE
+══════════════════════════════════════ */
+#overlay {
+  position: fixed; inset: 0; background: var(--pink);
+  z-index: 100; opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+#overlay.fade-in { opacity: 1; pointer-events: all; }
+
+.deco {
+  position: fixed; font-size: 13px; opacity: 0.2;
+  pointer-events: none; z-index: 1;
+  animation: driftH 8s ease-in-out infinite;
+}
+@keyframes driftH {
+  0%,100% { transform: translateY(0) rotate(-10deg); }
+  50%     { transform: translateY(-16px) rotate(10deg); }
+}
+</style>
+</head>
+<body>
+
+<div id="overlay"></div>
+<span class="deco" style="top:8%;left:5%;animation-delay:0s">💗</span>
+<span class="deco" style="top:14%;right:7%;animation-delay:1.5s">💓</span>
+<span class="deco" style="bottom:11%;left:8%;animation-delay:3s">💕</span>
+<span class="deco" style="bottom:18%;right:5%;animation-delay:2s">💞</span>
+<span class="deco" style="top:48%;left:2%;animation-delay:4s">🌸</span>
+<span class="deco" style="top:48%;right:2%;animation-delay:2.5s">🌸</span>
+
+<!-- ═══════════════════════════════════
+     PAGE 1 — WELCOME
+════════════════════════════════════ -->
+<div class="page active" id="page1">
+  <div class="bouquet-wrap">
+    <div class="kiss-photo-frame" id="bouquet">
+      <!-- tulip ring -->
+      <div class="tulip-ring" id="tulipRing"></div>
+      <!--
+        ★ REPLACE src WITH YOUR KISS PHOTO ★
+        e.g. src="kiss.jpg"
+        Ideal: square crop, faces centred
+      -->
+      <img class="kiss-photo"
+        src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400&h=400&fit=crop&crop=faces"
+        alt="Us 💕"
+      />
+    </div>
+  </div>
+  <h1 class="welcome-title" id="welcomeTitle">Welcome, My Love 💕</h1>
+  <p class="welcome-sub" id="welcomeSub">These tulips are just for you — because you deserve all the flowers in the world 🌷</p>
+  <button class="cta-btn" id="ctaBtn" onclick="goToPage(2)">Let's see what your heart wants 💖</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     PAGE 2 — DO YOU LOVE ME?
+════════════════════════════════════ -->
+<div class="page" id="page2">
+  <h2 class="love-question">Tell me… do you love me? 🥺</h2>
+  <p class="love-sub-text">
+    My heart has been whispering your name since forever.<br>
+    There's only one thing I need to know right now… 💓
+  </p>
+  <button class="yes-btn" id="yesBtn2" onclick="handleYes(event)">Yes 💗</button>
+  <button class="no-btn" id="noBtn">No 🙈</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     PAGE 3 — Really?
+════════════════════════════════════ -->
+<div class="page" id="page3">
+  <div class="confirm-photo-wrap">
+    <div class="confirm-polaroid" style="--tilt:-3deg">
+      <!--
+        ★ REPLACE src — Photo 1 (just you two, candid)
+        e.g. src="photo1.jpg"
+      -->
+      <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=300&h=300&fit=crop" alt="us"/>
+      <div class="pol-caption">our little moment 🌷</div>
+    </div>
+  </div>
+  <img class="confirm-gif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Tom surprised"/>
+  <p class="confirm-question">Really? 👀</p>
+  <button class="big-yes-btn confirm-yes-1">Yes, really! 💗</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     PAGE 4 — So you REALLY love me?
+════════════════════════════════════ -->
+<div class="page" id="page4">
+  <div class="confirm-photo-wrap">
+    <div class="confirm-polaroid" style="--tilt:2.5deg">
+      <!--
+        ★ REPLACE src — Photo 2 (laughing / fun)
+        e.g. src="photo2.jpg"
+      -->
+      <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300&h=300&fit=crop" alt="us"/>
+      <div class="pol-caption">you & me always 💕</div>
+    </div>
+  </div>
+  <img class="confirm-gif" src="https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif" alt="Tom excited"/>
+  <p class="confirm-question">So you REALLY love me? 😍</p>
+  <button class="big-yes-btn confirm-yes-2">YES I DO!! 💕</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     PAGE 5 — I'm not dreaming, right?
+════════════════════════════════════ -->
+<div class="page" id="page5">
+  <div class="confirm-photo-wrap">
+    <div class="confirm-polaroid" style="--tilt:-1.5deg">
+      <!--
+        ★ REPLACE src — Photo 3 (travel / outing)
+        e.g. src="photo3.jpg"
+      -->
+      <img src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?w=300&h=300&fit=crop" alt="us"/>
+      <div class="pol-caption">every day is ours 🌸</div>
+    </div>
+  </div>
+  <img class="confirm-gif" src="https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif" alt="Jerry happy"/>
+  <p class="confirm-question">I'm not dreaming, right? 🌙✨</p>
+  <button class="big-yes-btn confirm-yes-3">100% AWAKE &amp; IN LOVE!! 💖</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     PAGE 6 — You are in love with me?
+════════════════════════════════════ -->
+<div class="page" id="page6">
+  <div class="confirm-photo-wrap">
+    <div class="confirm-polaroid" style="--tilt:3deg">
+      <!--
+        ★ REPLACE src — Photo 4 (your fav together)
+        e.g. src="photo4.jpg"
+      -->
+      <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=300&h=300&fit=crop" alt="us"/>
+      <div class="pol-caption">my whole world 💞</div>
+    </div>
+  </div>
+  <img class="confirm-gif" src="https://media.giphy.com/media/xT0xeuOy26J0jMVGpa/giphy.gif" alt="Tom over the moon"/>
+  <p class="confirm-question">You are in love with me, right?! 🥳💘</p>
+  <button class="big-yes-btn confirm-yes-4">MADLY &amp; DEEPLY IN LOVE!! 💞</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     PAGE 7 — FINAL: POLAROID WALL + MESSAGE
+════════════════════════════════════ -->
+<div class="page" id="page7">
+
+  <!-- Scattered polaroid wall (positioned by JS) -->
+  <div class="wall-container" id="wallContainer"></div>
+
+  <!-- Centre love card -->
+  <div class="final-card">
+    <!--
+      ★ REPLACE src — your favourite photo (small circular)
+      e.g. src="favourite.jpg"
+    -->
+    <img class="final-heart-img"
+      src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&crop=faces"
+      alt="us 💕"
+    />
+    <h2 class="final-title">Thank you for loving me, [HER NAME] 🌷</h2>
+    <p class="final-message">
+      I don't know how I got lucky enough to have someone like you in my life,
+      but every single day I wake up grateful it's you. You make ordinary moments
+      feel magical — your laugh, your warmth, the way you just <em>get</em> me.
+      Today I want you to know: you are my favourite person, my safe place,
+      and the reason my heart smiles. I love you more than words —
+      and trust me, I've been searching for the right ones for a while. 🌷💕
+    </p>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════
+   CONFIG — WALL PHOTOS
+   Add as many src paths as you want.
+   Labels show on polaroid bottom.
+   These are the placeholder images —
+   replace each src with your own photo path.
+═══════════════════════════════ */
+const WALL_PHOTOS = [
+  { src: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=300&h=300&fit=crop", label: "always laughing 😄" },
+  { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300&h=300&fit=crop", label: "you & me 💕" },
+  { src: "https://images.unsplash.com/photo-1506863530036-1efeddceb993?w=300&h=300&fit=crop", label: "our adventures 🌸" },
+  { src: "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=300&h=300&fit=crop", label: "my whole world 💞" },
+  { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=300&h=300&fit=crop", label: "together forever 🌷" },
+  { src: "https://images.unsplash.com/photo-1542596594-649edbc13630?w=300&h=300&fit=crop", label: "golden moments ✨" },
+  { src: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=300&h=300&fit=crop", label: "just us 💗" },
+  { src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=300&h=300&fit=crop", label: "love of my life 💖" },
+  { src: "https://images.unsplash.com/photo-1533779183510-8f55a55e966a?w=300&h=300&fit=crop", label: "every single day 🥰" },
+];
+
+/* ═══════════════════════════════
+   SVG helpers for shower
+═══════════════════════════════ */
+function makeTulipSVG() {
+  const c = ['#ff6b8a','#ff85a1','#ffb5c0','#ff4d73','#ffc0cb'][Math.floor(Math.random()*5)];
+  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 50"><line x1="15" y1="50" x2="15" y2="28" stroke="#4a7c59" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="10" cy="38" rx="7" ry="3.5" fill="#66a875" transform="rotate(-30 10 38)"/><ellipse cx="15" cy="22" rx="7" ry="13" fill="${c}"/><ellipse cx="8" cy="24" rx="6" ry="12" fill="${c}" opacity=".85"/><ellipse cx="22" cy="24" rx="6" ry="12" fill="${c}" opacity=".85"/></svg>`)}`;
+}
+function makeStarSVG() {
+  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><polygon points="10,1 12,8 19,8 13,13 15,20 10,15 5,20 7,13 1,8 8,8" fill="white" opacity="0.88"/></svg>`)}`;
+}
+function makeHeartSVG() {
+  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 18"><path d="M10 16 C10 16 1 10 1 5 C1 2 3 0 6 0 C8 0 9.5 1.5 10 3 C10.5 1.5 12 0 14 0 C17 0 19 2 19 5 C19 10 10 16 10 16Z" fill="#ff6b8a"/></svg>`)}`;
+}
+
+/* ═══════════════════════════════
+   SHOWER
+═══════════════════════════════ */
+const showerTypes = ['tulip','tulip','tulip','star','heart','tulip','star'];
+let showerTimer = null, finalTimer = null;
+
+function createShowerItem(small) {
+  const el = document.createElement('div');
+  el.className = 'shower-item';
+  const type = showerTypes[Math.floor(Math.random()*showerTypes.length)];
+  let sz;
+  const img = document.createElement('img');
+  if (type === 'tulip') {
+    sz = small ? 16+Math.random()*10 : 22+Math.random()*16;
+    img.src = makeTulipSVG(); img.width = sz; img.height = Math.round(sz*1.65);
+  } else if (type === 'star') {
+    sz = small ? 9+Math.random()*7 : 11+Math.random()*10;
+    img.src = makeStarSVG(); img.width = sz; img.height = sz;
+  } else {
+    sz = small ? 9+Math.random()*7 : 11+Math.random()*10;
+    img.src = makeHeartSVG(); img.width = sz; img.height = Math.round(sz*0.9);
+  }
+  el.appendChild(img);
+  el.style.setProperty('--rot', (Math.random()*720-360)+'deg');
+  el.style.left = (Math.random()*105-2)+'vw';
+  el.style.animationDuration = (3.5+Math.random()*4)+'s';
+  el.style.animationDelay   = (Math.random()*0.8)+'s';
+  document.body.appendChild(el);
+  el.addEventListener('animationend', ()=>el.remove());
+}
+
+function startShower(small) {
+  const n = small ? 28 : 20;
+  const interval = small ? 200 : 270;
+  for (let i=0;i<n;i++) setTimeout(()=>createShowerItem(small), i*85);
+  return setInterval(()=>createShowerItem(small), interval);
+}
+
+/* ═══════════════════════════════
+   SPARKLE
+═══════════════════════════════ */
+function spawnSparkle(x, y) {
+  for (let i=0;i<10;i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle-dot';
+    const angle = (Math.PI*2/10)*i + Math.random()*0.4;
+    const dist  = 40+Math.random()*60;
+    s.style.left = x+'px'; s.style.top = y+'px';
+    s.style.setProperty('--dx', (Math.cos(angle)*dist)+'px');
+    s.style.setProperty('--dy', (Math.sin(angle)*dist)+'px');
+    s.style.background = ['#fff','#ffaabb','#ffd6e0','#ffe066'][Math.floor(Math.random()*4)];
+    s.style.animationDuration = (0.8+Math.random()*0.6)+'s';
+    document.body.appendChild(s);
+    s.addEventListener('animationend',()=>s.remove());
+  }
+}
+
+/* ═══════════════════════════════
+   TULIP RING on page 1
+═══════════════════════════════ */
+function buildTulipRing() {
+  const ring = document.getElementById('tulipRing');
+  const emojis = ['🌷','🌸','🌷','💕','🌷','🌸','🌷','💗'];
+  const n = emojis.length;
+  ring.innerHTML = '';
+  const R = 50; // percent radius
+  emojis.forEach((em, i) => {
+    const angle = (i / n) * 360 - 90;
+    const rad   = angle * Math.PI / 180;
+    const x = 50 + R * Math.cos(rad);
+    const y = 50 + R * Math.sin(rad);
+    const span = document.createElement('span');
+    span.textContent = em;
+    span.style.left = x + '%';
+    span.style.top  = y + '%';
+    span.style.transform = `translate(-50%,-50%) rotate(${angle+90}deg)`;
+    span.style.animationDelay = (i * 0.2) + 's';
+    ring.appendChild(span);
+  });
+}
+
+/* ═══════════════════════════════
+   PAGE 1 SEQUENCE
+═══════════════════════════════ */
+function startPage1() {
+  const frame = document.getElementById('bouquet');
+  const title = document.getElementById('welcomeTitle');
+  const sub   = document.getElementById('welcomeSub');
+  const btn   = document.getElementById('ctaBtn');
+  [frame, title, sub, btn].forEach(el => el.classList.remove('show'));
+  frame.classList.remove('floating');
+
+  setTimeout(()=>{ frame.classList.add('show'); setTimeout(()=>frame.classList.add('floating'),1000); }, 200);
+  setTimeout(()=>title.classList.add('show'), 900);
+  setTimeout(()=>sub.classList.add('show'), 1500);
+  setTimeout(()=>{ showerTimer = startShower(false); setTimeout(()=>{ clearInterval(showerTimer); }, 5000); }, 1800);
+  setTimeout(()=>btn.classList.add('show'), 2600);
+}
+
+/* ═══════════════════════════════
+   PAGE 7 — POLAROID WALL
+═══════════════════════════════ */
+function buildWall() {
+  const container = document.getElementById('wallContainer');
+  container.innerHTML = '';
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  // Spread photos around the edges, avoiding dead centre
+  // We use a grid of zones and pick random spots within each
+  const count = WALL_PHOTOS.length;
+
+  // Photo sizes — smaller on mobile
+  const isMobile = vw < 600;
+  const photoSz  = isMobile ? 64 : 88;
+  const polW     = photoSz + 14;   // padding + photo
+  const polH     = photoSz + 30;
+
+  // Place photos in a scattered ring avoiding the central card area
+  const centerX = vw / 2;
+  const centerY = vh / 2;
+  const cardW   = Math.min(420, vw * 0.88);
+  const cardH   = 220;
+  const safeR   = Math.max(cardW, cardH) * 0.62; // exclusion radius
+
+  const placed = [];
+
+  WALL_PHOTOS.forEach((photo, i) => {
+    const el = document.createElement('div');
+    el.className = 'wall-polaroid';
+
+    const img = document.createElement('img');
+    img.src    = photo.src;
+    img.width  = photoSz;
+    img.height = photoSz;
+    img.alt    = 'memory';
+
+    const lbl = document.createElement('div');
+    lbl.className = 'pol-label';
+    lbl.textContent = photo.label;
+    lbl.style.width = photoSz + 'px';
+
+    el.appendChild(img); el.appendChild(lbl);
+
+    // Random tilt
+    const tilt = (Math.random()*26 - 13).toFixed(1) + 'deg';
+    el.style.setProperty('--r', tilt);
+    el.style.setProperty('--dur', (4+Math.random()*3).toFixed(1)+'s');
+    el.style.setProperty('--adel', (Math.random()*2).toFixed(2)+'s');
+    el.style.setProperty('--fy', (Math.random()*-14 - 3).toFixed(1)+'px');
+
+    // Find a valid position
+    let px, py, tries = 0;
+    do {
+      px = polW/2 + Math.random() * (vw - polW);
+      py = polH/2 + Math.random() * (vh - polH);
+      const dx = px - centerX, dy = py - centerY;
+      tries++;
+    } while (tries < 60 && Math.hypot(px-centerX, py-centerY) < safeR);
+
+    el.style.left = (px - polW/2) + 'px';
+    el.style.top  = (py - polH/2) + 'px';
+
+    container.appendChild(el);
+
+    // Staggered pop-in
+    setTimeout(()=>el.classList.add('popped'), 150 + i * 180);
+  });
+}
+
+/* ═══════════════════════════════
+   NO BUTTON
+═══════════════════════════════ */
+function positionNoBtn() {
+  const noBtn  = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn2');
+  const rect   = yesBtn.getBoundingClientRect();
+  noBtn.style.transition = 'none';
+  noBtn.style.left = (rect.right + 22) + 'px';
+  noBtn.style.top  = rect.top + 'px';
+}
+
+function runAway() {
+  const btn = document.getElementById('noBtn');
+  const bw  = btn.offsetWidth  || 130;
+  const bh  = btn.offsetHeight || 52;
+  let nx, ny, tries = 0;
+  const cx = parseFloat(btn.style.left)||0;
+  const cy = parseFloat(btn.style.top)||0;
+  do {
+    nx = 12 + Math.random() * (window.innerWidth  - bw  - 24);
+    ny = 12 + Math.random() * (window.innerHeight - bh - 24);
+    tries++;
+  } while (tries < 20 && Math.hypot(nx-cx, ny-cy) < 100);
+  btn.style.transition = 'left 0.25s cubic-bezier(0.34,1.56,0.64,1), top 0.25s cubic-bezier(0.34,1.56,0.64,1)';
+  btn.style.left = nx + 'px';
+  btn.style.top  = ny + 'px';
+}
+
+document.addEventListener('mousemove', e => {
+  if (currentPage !== 2) return;
+  const btn  = document.getElementById('noBtn');
+  const rect = btn.getBoundingClientRect();
+  if (Math.hypot(e.clientX-(rect.left+rect.width/2), e.clientY-(rect.top+rect.height/2)) < 100) runAway();
+});
+document.addEventListener('touchmove', e => {
+  if (currentPage !== 2) return;
+  const t = e.touches[0], btn = document.getElementById('noBtn');
+  const rect = btn.getBoundingClientRect();
+  if (Math.hypot(t.clientX-(rect.left+rect.width/2), t.clientY-(rect.top+rect.height/2)) < 110) runAway();
+}, {passive:true});
+
+/* ═══════════════════════════════
+   PAGE SWITCHING
+═══════════════════════════════ */
+let currentPage = 1;
+
+function goToPage(n) {
+  const overlay = document.getElementById('overlay');
+  overlay.classList.add('fade-in');
+  setTimeout(()=>{
+    document.getElementById('page'+currentPage).classList.remove('active');
+    currentPage = n;
+    document.getElementById('page'+n).classList.add('active');
+    overlay.classList.remove('fade-in');
+    if (n===1) startPage1();
+    if (n===2) positionNoBtn();
+    if (n===7) {
+      buildWall();
+      finalTimer = startShower(true);
+      const cx=window.innerWidth/2, cy=window.innerHeight/2;
+      for(let i=0;i<8;i++) setTimeout(()=>spawnSparkle(cx+(Math.random()-0.5)*300, cy+(Math.random()-0.5)*200), i*140);
+    }
+  }, 380);
+}
+
+function handleYes(e) {
+  spawnSparkle(e.clientX, e.clientY);
+  setTimeout(()=>goToPage(3), 140);
+}
+
+/* ═══════════════════════════════
+   INIT
+═══════════════════════════════ */
+window.addEventListener('load', ()=>{
+  buildTulipRing();
+  startPage1();
+
+  // Wire confirm-page Yes buttons
+  [3,4,5,6].forEach(n=>{
+    const btn = document.querySelector('#page'+n+' .big-yes-btn');
+    if (!btn) return;
+    btn.onclick = e => { spawnSparkle(e.clientX, e.clientY); setTimeout(()=>goToPage(n+1), 150); };
+  });
+});
+
+document.addEventListener('touchmove', e=>e.preventDefault(), {passive:false});
+</script>
+</body>
+</html>
