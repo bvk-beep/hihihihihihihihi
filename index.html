@@ -9,11 +9,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --pink: #FFB5C0;
-  --pink-deep: #ff8fa3;
-  --pink-light: #ffe0e6;
+  --pink: #0a0a0d;
+  --pink-deep: #ffb5c5;
+  --pink-light: #1c1c22;
   --white: #ffffff;
-  --soft-white: rgba(255,255,255,0.92);
+  --soft-white: rgba(255,255,255,0.85);
 }
 
 html, body {
@@ -28,7 +28,7 @@ html, body {
 body::before {
   content: '';
   position: fixed; inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, #ffd6e0 0%, #FFB5C0 50%, #ff8fa3 100%);
+  background: radial-gradient(ellipse at 50% 30%, #1a1a20 0%, #0d0d10 55%, #000000 100%);
   z-index: -2;
 }
 
@@ -334,6 +334,39 @@ body::before {
 }
 
 /* ══════════════════════════════════════
+   CHERRY BLOSSOM WIND LAYER — persistent, every page
+   ══════════════════════════════════════ */
+.petal-layer {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+.petal {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: petalFall linear forwards;
+}
+.petal img { display: block; }
+@keyframes petalFall {
+  0% {
+    transform: translate(var(--startX), -5vh) rotate(0deg);
+    opacity: 0;
+  }
+  6% { opacity: 1; }
+  50% {
+    transform: translate(calc(var(--startX) + (var(--drift) * 0.5)), 55vh) rotate(calc(var(--spin) * 0.5));
+  }
+  100% {
+    transform: translate(calc(var(--startX) + var(--drift)), 108vh) rotate(var(--spin));
+    opacity: 0.85;
+  }
+}
+
+/* ══════════════════════════════════════
    SPARKLES
 ══════════════════════════════════════ */
 .sparkle-dot {
@@ -370,6 +403,7 @@ body::before {
 <body>
 
 <div id="overlay"></div>
+<div class="petal-layer" id="petalLayer"></div>
 <span class="deco" style="top:8%;left:5%;animation-delay:0s">💗</span>
 <span class="deco" style="top:14%;right:7%;animation-delay:1.5s">💓</span>
 <span class="deco" style="bottom:11%;left:8%;animation-delay:3s">💕</span>
@@ -547,6 +581,45 @@ function makeTulipSVG() {
   const c = ['#ff6b8a','#ff85a1','#ffb5c0','#ff4d73','#ffc0cb'][Math.floor(Math.random()*5)];
   return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 50"><line x1="15" y1="50" x2="15" y2="28" stroke="#4a7c59" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="10" cy="38" rx="7" ry="3.5" fill="#66a875" transform="rotate(-30 10 38)"/><ellipse cx="15" cy="22" rx="7" ry="13" fill="${c}"/><ellipse cx="8" cy="24" rx="6" ry="12" fill="${c}" opacity=".85"/><ellipse cx="22" cy="24" rx="6" ry="12" fill="${c}" opacity=".85"/></svg>`)}`;
 }
+function makeCherryPetalSVG() {
+  const c = ['#ffc4d6','#ffb0c9','#ff9ebd','#ffd9e4','#ffa8c0'][Math.floor(Math.random()*5)];
+  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 C15 2 16 6 12 9 C8 6 9 2 12 2Z" fill="${c}"/><path d="M12 9 C13.5 9 14.5 9.6 14 11 C12.8 11.6 11.2 11.6 10 11 C9.5 9.6 10.5 9 12 9Z" fill="${c}" opacity="0.9"/></svg>`)}`;
+}
+
+/* ═══════════════════════════════
+   PERSISTENT CHERRY BLOSSOM + WIND
+   Runs continuously on every page
+   ═══════════════════════════════ */
+const petalLayer = document.getElementById('petalLayer');
+function spawnPetal() {
+  const el = document.createElement('div');
+  el.className = 'petal';
+  const img = document.createElement('img');
+  img.src = makeCherryPetalSVG();
+  const sz = 14 + Math.random()*14;
+  img.width = sz; img.height = sz;
+  el.appendChild(img);
+
+  const startX = Math.random()*100 + 'vw';
+  const drift = (60 + Math.random()*90) + 'px'; // wind pushes petals sideways as they fall
+  const spin = (Math.random()*540 + 180) + 'deg';
+  const dur = (7 + Math.random()*6) + 's';
+
+  el.style.setProperty('--startX', startX);
+  el.style.setProperty('--drift', drift);
+  el.style.setProperty('--spin', spin);
+  el.style.animationDuration = dur;
+  el.style.opacity = (0.55 + Math.random()*0.35);
+
+  petalLayer.appendChild(el);
+  el.addEventListener('animationend', () => el.remove());
+}
+function startPetalWind() {
+  // gentle continuous stream on every page, from the side like wind-blown blossoms
+  setInterval(spawnPetal, 420);
+  for (let i=0;i<6;i++) setTimeout(spawnPetal, i*250);
+}
+
 function makeStarSVG() {
   return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><polygon points="10,1 12,8 19,8 13,13 15,20 10,15 5,20 7,13 1,8 8,8" fill="white" opacity="0.88"/></svg>`)}`;
 }
@@ -801,6 +874,7 @@ function handleYes(e) {
 window.addEventListener('load', ()=>{
   buildTulipRing();
   startPage1();
+  startPetalWind();
 
   // Wire confirm-page Yes buttons
   [3,4,5,6].forEach(n=>{
