@@ -600,10 +600,10 @@ function spawnPetal() {
   img.width = sz; img.height = sz;
   el.appendChild(img);
 
-  const startX = Math.random()*100 + 'vw';
-  const drift = (140 + Math.random()*100) + 'vw'; // wind pushes petals sideways as they fall
+  const startX = (Math.random()*150 - 60) + 'vw';
+  const drift = (Math.round(window.innerHeight * (0.9 + Math.random()*0.6))) + 'px';
   const spin = (Math.random()*540 + 180) + 'deg';
-  const dur = (7 + Math.random()*6) + 's';
+  const dur = (10 + Math.random()*8) + 's';
 
   el.style.setProperty('--startX', startX);
   el.style.setProperty('--drift', drift);
@@ -616,8 +616,8 @@ function spawnPetal() {
 }
 function startPetalWind() {
   // gentle continuous stream on every page, from the side like wind-blown blossoms
-  setInterval(spawnPetal, 420);
-  for (let i=0;i<6;i++) setTimeout(spawnPetal, i*250);
+  setInterval(spawnPetal, 210);
+  for (let i=0;i<12;i++) setTimeout(spawnPetal, i*250);
 }
 
 function makeStarSVG() {
