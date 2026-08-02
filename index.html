@@ -601,7 +601,7 @@ function spawnPetal() {
   el.appendChild(img);
 
   const startX = Math.random()*100 + 'vw';
-  const drift = (60 + Math.random()*90) + 'px'; // wind pushes petals sideways as they fall
+  const drift = (140 + Math.random()*100) + 'vw'; // wind pushes petals sideways as they fall
   const spin = (Math.random()*540 + 180) + 'deg';
   const dur = (7 + Math.random()*6) + 's';
 
@@ -722,7 +722,6 @@ function startPage1() {
   setTimeout(()=>{ frame.classList.add('show'); setTimeout(()=>frame.classList.add('floating'),1000); }, 200);
   setTimeout(()=>title.classList.add('show'), 900);
   setTimeout(()=>sub.classList.add('show'), 1500);
-  setTimeout(()=>{ showerTimer = startShower(false); setTimeout(()=>{ clearInterval(showerTimer); }, 5000); }, 1800);
   setTimeout(()=>btn.classList.add('show'), 2600);
 }
 
