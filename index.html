@@ -4,7 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>For My Love 💕</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,7 +22,7 @@ html, body {
   width: 100%; height: 100%;
   overflow: hidden;
   background: var(--pink);
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Emilys Candy', cursive;
   color: var(--white);
   touch-action: none;
 }
@@ -53,8 +55,8 @@ body::before {
 /* ★ KISS PHOTO — circular frame with tulip ring */
 .kiss-photo-frame {
   position: relative;
-  width: clamp(160px, 38vw, 230px);
-  height: clamp(160px, 38vw, 230px);
+  width: clamp(160px, 38vw, 350px);
+  height: clamp(160px, 38vw, 350px);
   margin: 0 auto;
   opacity: 0;
   transform: scale(0.3) translateY(60px);
@@ -90,7 +92,7 @@ body::before {
 }
 
 .welcome-title {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Emilys Candy', cursive;
   font-size: clamp(2rem, 7vw, 3.6rem);
   color: var(--white);
   text-shadow: 0 2px 20px rgba(255,100,130,0.6);
@@ -104,21 +106,21 @@ body::before {
   font-size: clamp(0.88rem, 2.8vw, 1.1rem);
   color: var(--soft-white);
   opacity: 0; transform: translateY(20px);
-  transition: all 0.8s ease 1.4s;
+  transition: all 0.8s ease 1s;
   margin-bottom: 26px; font-weight: 500;
   max-width: 340px; line-height: 1.6;
 }
 .welcome-sub.show { opacity: 1; transform: translateY(0); }
 
 .cta-btn {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Emilys Candy', cursive;
   font-size: clamp(1.1rem, 3.5vw, 1.4rem);
   background: var(--white); color: var(--pink-deep);
   border: none; border-radius: 50px;
   padding: 13px 34px; cursor: pointer;
   box-shadow: 0 8px 30px rgba(255,100,130,0.35);
   opacity: 0; transform: translateY(20px) scale(0.9);
-  transition: opacity 0.8s ease 2.4s, transform 0.8s ease 2.4s, background 0.2s;
+  transition: opacity 0.8s ease 1s, transform 0.8s ease 1s, background 0.2s;
   font-weight: 700;
 }
 .cta-btn.show { opacity: 1; transform: translateY(0) scale(1); }
@@ -129,7 +131,7 @@ body::before {
    PAGE 2 — DO YOU LOVE ME
 ══════════════════════════════════════ */
 .love-question {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Emilys Candy', cursive;
   font-size: clamp(2rem, 8vw, 4rem);
   color: var(--white);
   text-shadow: 0 3px 20px rgba(200,50,80,0.4);
@@ -141,7 +143,7 @@ body::before {
   margin-bottom: 32px; max-width: 360px; line-height: 1.6;
 }
 .yes-btn {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Emilys Candy', cursive;
   font-size: clamp(1.1rem, 4vw, 1.5rem); font-weight: 700;
   background: var(--white); color: #e05070;
   border: none; border-radius: 50px;
@@ -154,7 +156,7 @@ body::before {
 .yes-btn:active { transform: scale(0.95); }
 
 .no-btn {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Emilys Candy', cursive;
   font-size: clamp(1.1rem, 4vw, 1.5rem); font-weight: 700;
   background: rgba(255,255,255,0.28); color: var(--white);
   border: 2px solid rgba(255,255,255,0.5);
@@ -185,13 +187,13 @@ body::before {
   50%     { transform: rotate(calc(var(--tilt,-2deg) * -0.5)) translateY(-8px); }
 }
 .confirm-polaroid img {
-  width: clamp(110px, 26vw, 160px);
-  height: clamp(110px, 26vw, 160px);
+  width: clamp(110px, 26vw, 300px);
+  height: clamp(110px, 26vw, 300px);
   object-fit: cover; display: block;
   border-radius: 2px;
 }
 .confirm-polaroid .pol-caption {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Emilys Candy', cursive;
   font-size: clamp(0.7rem, 2vw, 0.9rem);
   color: #cc5070; text-align: center;
   padding-top: 4px; line-height: 1.2;
@@ -206,7 +208,7 @@ body::before {
 }
 
 .confirm-question {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Emilys Candy', cursive;
   font-size: clamp(1.6rem, 5.5vw, 3rem);
   color: var(--white);
   text-shadow: 0 2px 16px rgba(200,50,80,0.4);
@@ -214,7 +216,8 @@ body::before {
 }
 
 .big-yes-btn {
-  font-family: 'Dancing Script', cursive; font-weight: 700;
+  font-family: 'Emilys Candy', cursive; 
+  font-weight: 700;
   background: var(--white); color: #e05070;
   border: none; border-radius: 50px; cursor: pointer;
   box-shadow: 0 8px 30px rgba(255,100,130,0.45);
@@ -267,7 +270,7 @@ body::before {
   border-radius: 1px;
 }
 .wall-polaroid .pol-label {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Emilys Candy', cursive;
   font-size: clamp(0.55rem, 1.5vw, 0.75rem);
   color: #cc5070; text-align: center;
   padding-top: 3px; line-height: 1.1;
@@ -305,7 +308,7 @@ body::before {
 }
 
 .final-title {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Emilys Candy', cursive;
   font-size: clamp(1.5rem, 5vw, 2.4rem);
   color: var(--white);
   text-shadow: 0 2px 14px rgba(200,50,80,0.4);
@@ -458,7 +461,7 @@ body::before {
         ★ REPLACE src — Photo 1 (just you two, candid)
         e.g. src="photo1.jpg"
       -->
-      <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=300&h=300&fit=crop" alt="us"/>
+      <img src="photos/page3image.jpg" alt="us"/>
       <div class="pol-caption">our little moment 🌷</div>
     </div>
   </div>
@@ -477,7 +480,7 @@ body::before {
         ★ REPLACE src — Photo 2 (laughing / fun)
         e.g. src="photo2.jpg"
       -->
-      <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=300&h=300&fit=crop" alt="us"/>
+      <img src="photos/page4image.jpg" alt="us"/>
       <div class="pol-caption">you & me always 💕</div>
     </div>
   </div>
@@ -496,7 +499,7 @@ body::before {
         ★ REPLACE src — Photo 3 (travel / outing)
         e.g. src="photo3.jpg"
       -->
-      <img src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?w=300&h=300&fit=crop" alt="us"/>
+      <img src="photos/page5image.jpg" alt="us"/>
       <div class="pol-caption">every day is ours 🌸</div>
     </div>
   </div>
@@ -515,7 +518,7 @@ body::before {
         ★ REPLACE src — Photo 4 (your fav together)
         e.g. src="photo4.jpg"
       -->
-      <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=300&h=300&fit=crop" alt="us"/>
+      <img src="photos/page6image.jpg" alt="us"/>
       <div class="pol-caption">my whole world 💞</div>
     </div>
   </div>
@@ -542,7 +545,7 @@ body::before {
       src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=200&h=200&fit=crop&crop=faces"
       alt="us 💕"
     />
-    <h2 class="final-title">Thank you for loving me, [HER NAME] 🌷</h2>
+    <h2 class="final-title">Thank you for loving me, Anoushka 🌷</h2>
     <p class="final-message">
       I don't know how I got lucky enough to have someone like you in my life,
       but every single day I wake up grateful it's you. You make ordinary moments
