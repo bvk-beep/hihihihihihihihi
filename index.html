@@ -34,6 +34,46 @@ body::before {
   z-index: -2;
 }
 
+.draggable-container {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.draggable-card {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  background: white;
+  padding: 12px 12px 40px 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  transition: box-shadow 0.2s;
+  z-index: 1;
+}
+
+.draggable-card:active {
+  cursor: grabbing;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  z-index: 999;
+}
+
+.draggable-card img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.draggable-card p {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #888;
+}
+  
 /* ══ PAGES ══ */
 .page {
   position: fixed; inset: 0;
@@ -533,7 +573,8 @@ body::before {
 <div class="page" id="page7">
 
   <!-- Scattered polaroid wall (positioned by JS) -->
-  <div class="wall-container" id="wallContainer"></div>
+<div class="wall-container" id="wallContainer"></div>
+<div class="draggable-container" id="dragArea" style="position:absolute;inset:0;z-index:2;pointer-events:none;"></div>
 
   <!-- Centre love card -->
   <div class="final-card">
@@ -858,6 +899,7 @@ function goToPage(n) {
     if (n===2) positionNoBtn();
     if (n===7) {
       buildWall();
+      buildDraggableCards();
       finalTimer = startShower(true);
       const cx=window.innerWidth/2, cy=window.innerHeight/2;
       for(let i=0;i<8;i++) setTimeout(()=>spawnSparkle(cx+(Math.random()-0.5)*300, cy+(Math.random()-0.5)*200), i*140);
@@ -887,6 +929,73 @@ window.addEventListener('load', ()=>{
 });
 
 document.addEventListener('touchmove', e=>e.preventDefault(), {passive:false});
+
+function buildDraggableCards() {
+  const area = document.getElementById('dragArea');
+  area.innerHTML = '';
+  area.style.pointerEvents = 'all';
+
+  const cards = [
+    { src: "photos/frontpage.jpeg", label: "us 💗" },
+    { src: "photos/page3image.jpg", label: "our little moment 🌷" },
+    { src: "photos/page4image.jpg", label: "you & me always 💕" },
+    { src: "photos/page5image.jpg", label: "every day is ours 🌸" },
+    { src: "photos/page6image.jpg", label: "my whole world 💞" },
+  ];
+
+  const positions = [
+    { top:'8%',  left:'4%',  rot:'-5deg' },
+    { top:'5%',  left:'28%', rot:'6deg'  },
+    { top:'6%',  right:'6%', rot:'-3deg' },
+    { top:'55%', left:'3%',  rot:'4deg'  },
+    { top:'58%', right:'4%', rot:'-6deg' },
+  ];
+
+  cards.forEach((c, i) => {
+    const card = document.createElement('div');
+    card.className = 'draggable-card';
+    Object.assign(card.style, positions[i], { transform: `rotate(${positions[i].rot})` });
+
+    const img = document.createElement('img');
+    img.src = c.src;
+
+    const p = document.createElement('p');
+    p.textContent = c.label;
+
+    card.appendChild(img);
+    card.appendChild(p);
+    area.appendChild(card);
+
+    // Drag logic
+    let dragging = false, startX, startY, origX, origY;
+
+    const onStart = (cx, cy) => {
+      dragging = true; startX = cx; startY = cy;
+      const rect = card.getBoundingClientRect();
+      const par  = area.getBoundingClientRect();
+      origX = rect.left - par.left;
+      origY = rect.top  - par.top;
+      card.style.left = origX + 'px'; card.style.top = origY + 'px';
+      card.style.right = 'auto';      card.style.transform = 'rotate(0deg)';
+      card.style.zIndex = 999;
+    };
+    const onMove = (cx, cy) => {
+      if (!dragging) return;
+      card.style.left = (origX + cx - startX) + 'px';
+      card.style.top  = (origY + cy - startY) + 'px';
+    };
+    const onEnd = () => { dragging = false; card.style.zIndex = 1; };
+
+    card.addEventListener('mousedown',  e => { onStart(e.clientX, e.clientY); e.preventDefault(); });
+    card.addEventListener('touchstart', e => { onStart(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+    document.addEventListener('mousemove',  e => onMove(e.clientX, e.clientY));
+    document.addEventListener('touchmove',  e => onMove(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+    document.addEventListener('mouseup',  onEnd);
+    document.addEventListener('touchend', onEnd);
+  });
+}
+
+  
 </script>
 </body>
 </html>
